@@ -10,8 +10,8 @@
 
 <body>
   <h1>Whatsapp App</h1>
-  <form method="get" action="/chats/new">
-    <button>Create New Chat</button>
+  <form method="get" action="/chats/new" class="create-chat-form">
+    <button type="submit">Create New Chat</button>
   </form>
 
   <% for(let chat of chats) { %>
@@ -19,19 +19,18 @@
       <p>From : <%= chat.from %>
       </p>
       <p class="message">Message : <%= chat.message %>
-          <form method="get" action="/chats/<%= chat.id %>/edit">
-            <button>Edit Post</button>
-          </form>
       </p>
+      <form method="get" action="/chats/<%= chat.id %>/edit">
+        <button type="submit">Edit Post</button>
+      </form>
       <p>Recieved By : <%= chat.to %>
       </p>
       <p>Time : <%= (chat.created_at.toString()).split(" ")[4] %></p>
       <p>Date : <%= (chat.created_at.toString()).split(" ").slice(0, 4).join(" ") %></p>
       <form method="post" action="/chats/<%= chat.id %>?_method=DELETE">
-            <button>Delete Post</button>
+          <button type="submit">Delete Post</button>
           </form>
     </div>
-    <br><br>
     <% } %>
 
 </body>

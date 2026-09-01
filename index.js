@@ -39,7 +39,7 @@ app.get("/chats/new", (req, res) => {
 });
 
 //create Route
-app.post("/chats", (req, res) => {
+app.post("/chats", async (req, res) => {
   let { from, message, to } = req.body;
   let newchat = new chat({
     from: from,
@@ -47,7 +47,7 @@ app.post("/chats", (req, res) => {
     message: message,
   });
 
-  newchat
+  await newchat
     .save()
     .then((res) => {
       //if we use then it means it's working automatically.
@@ -73,10 +73,6 @@ app.put("/chats/:id", async (req, res) => {
 
   let { from, message, to } = req.body;
 
-  // console.log("id :", id);
-  // console.log("Message",message);
-  // console.log("To",to);
-
   let updatedchat = await chat.findByIdAndUpdate(
     id,
     {
@@ -87,22 +83,19 @@ app.put("/chats/:id", async (req, res) => {
     { new: true },
   );
 
-  // console.log("UpdatedChat :", updatedchat);
-
   res.redirect("/chats");
 });
 
-
 //destroy routes
-app.delete("/chats/:id",async (req, res) =>{
-  let {id} = req.params;
+app.delete("/chats/:id", async (req, res) => {
+  let { id } = req.params;
 
   let deletechat = await chat.findByIdAndDelete(id);
 
   console.log(deletechat);
 
   res.redirect("/chats");
-})
+});
 
 app.listen(8000, () => {
   console.log("Server is listing on port 8000");

@@ -1,42 +1,410 @@
-*{
-  padding: 0;
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  height: 100vh;
-  width: 100vw;
-  padding: 20px;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e9edef;
+  color: #111b21;
+  min-height: 100vh;
+  padding: 40px 20px;
 }
+
+h1 {
+  text-align: center;
+  color: #128c7e;
+  margin-bottom: 30px;
+  font-size: 36px;
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+
+/* =========================================================
+   HOME / INDEX PAGE
+========================================================= */
+
+/* Create New Chat button */
+
+body > form.create-chat-form {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.create-chat-form button {
+  background-color: #25d366;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.create-chat-form button:hover {
+  background-color: #20bd5a;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CHAT BOX
+========================================================= */
 
 .chatbox {
-  border: 2px solid black;
-  border-radius: 10px;
-  margin: 2px 0 2px 0;
-  padding: 4px;
+  width: 90%;
+  max-width: 650px;
+  margin: 0 auto 20px auto;
+
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  border-left: 5px solid #25d366;
+
+  transition: 0.2s ease;
+}
+
+.chatbox:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  transform: translateY(-2px);
+}
+
+
+/* Chat text */
+
+.chatbox p {
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+/* Message */
+
+.message {
+  background-color: #d9fdd3;
+  padding: 12px 15px;
+  border-radius: 8px;
+
+  color: #111b21;
+  font-weight: 500;
+
+  margin: 15px 0;
+}
+
+
+/* Time and Date */
+
+.chatbox p:nth-of-type(4),
+.chatbox p:nth-of-type(5) {
+  color: #667781;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.chatbox form[action*="/edit"] {
   display: inline-block;
-  font-style: italic;
+  margin-top: 5px;
 }
 
-.message{
-  background-color: rgb(21, 207, 213);
+.chatbox form[action*="/edit"] button {
+  background-color: #128c7e;
+  color: white;
+
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-.newchatbox{
+.chatbox form[action*="/edit"] button:hover {
+  background-color: #0d7468;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.chatbox form[action*="DELETE"] {
   display: inline-block;
-  padding: 10px;
-  border: 2px solid rgb(13, 14, 14);
-  border-radius: 5px;
+  margin-top: 10px;
 }
 
-.inputbox, textarea{
-  /* background-color: rgb(209, 201, 215); */
-  padding: 12px;
-  font-size: 30px;
+.chatbox form[action*="DELETE"] button {
+  background-color: #e53935;
+  color: white;
+
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-button{
-  padding: 10px;
+.chatbox form[action*="DELETE"] button:hover {
+  background-color: #c62828;
+}
+
+
+/* =========================================================
+   NEW CHAT PAGE
+========================================================= */
+
+.newchatbox {
+  width: 90%;
+  max-width: 550px;
+
+  margin: 0 auto;
+
+  background-color: #ffffff;
+
+  padding: 30px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+
+  border-top: 5px solid #25d366;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+
+/* New chat inputs */
+
+.newchatbox input,
+.newchatbox textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #ccd0d5;
+
+  border-radius: 8px;
+
   font-size: 15px;
-  border-radius: 15px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  outline: none;
+
+  background-color: #f8f9fa;
+
+  transition: 0.2s ease;
+}
+
+
+/* Input focus */
+
+.newchatbox input:focus,
+.newchatbox textarea:focus {
+  border-color: #25d366;
+
+  background-color: #ffffff;
+
+  box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.15);
+}
+
+
+/* Message textarea */
+
+.newchatbox textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+
+/* New Chat button */
+
+.newchatbox button {
+  background-color: #25d366;
+
+  color: white;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+}
+
+.newchatbox button:hover {
+  background-color: #128c7e;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EDIT CHAT PAGE
+========================================================= */
+
+.editchatbox {
+  width: 90%;
+  max-width: 550px;
+
+  margin: 0 auto;
+
+  background-color: #ffffff;
+
+  padding: 30px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+
+  border-top: 5px solid #128c7e;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+
+/* Edit inputs */
+
+.editchatbox input,
+.editchatbox textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #ccd0d5;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  outline: none;
+
+  background-color: #f8f9fa;
+
+  transition: 0.2s ease;
+}
+
+
+/* Edit input focus */
+
+.editchatbox input:focus,
+.editchatbox textarea:focus {
+  border-color: #128c7e;
+
+  background-color: #ffffff;
+
+  box-shadow: 0 0 0 2px rgba(18, 140, 126, 0.15);
+}
+
+
+/* Edit textarea */
+
+.editchatbox textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+
+/* Change button */
+
+.editchatbox button {
+  background-color: #128c7e;
+
+  color: white;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+}
+
+.editchatbox button:hover {
+  background-color: #0d7468;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 25px 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+
+  /* Chat box */
+
+  .chatbox {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .chatbox p {
+    font-size: 14px;
+  }
+
+
+  /* Create button */
+
+  .create-chat-form button {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+
+  /* New Chat */
+
+  .newchatbox,
+  .editchatbox {
+    width: 100%;
+    padding: 20px;
+  }
+
+
+  .newchatbox input,
+  .newchatbox textarea,
+  .editchatbox input,
+  .editchatbox textarea {
+    font-size: 14px;
+  }
+
+
+  .newchatbox button,
+  .editchatbox button {
+    font-size: 14px;
+  }
 }
